@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiInventarioExpress | {{title}}</title>
+    
+    {{! CSS de Bootstrap (Mejora la estética y el diseño responsivo) }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    {{! Enlace a tu CSS personalizado (si lo tienes) }}
+    <link rel="stylesheet" href="/css/styles.css"> 
+</head>
+<body>
+    {{! Incluye la barra de navegación }}
+    {{> navbar}}
+
+    {{! El contenedor aplica márgenes y centrado }}
+    <div class="container mt-4">
+        {{{body}}}
+    </div>
+
+    {{! Scripts de Bootstrap (Necesarios para el menú desplegable y otros componentes) }}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

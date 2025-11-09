@@ -1,0 +1,56 @@
+<h2 class="text-info">Chat de Administradores</h2>
+<hr>
+
+{{! Usaremos este div para mostrar los mensajes }}
+<div id="messages" class="p-3 mb-3 border bg-light" style="height: 300px; overflow-y: scroll;">
+    </div>
+
+<div class="input-group mt-3">
+    <input id="messageInput" type="text" class="form-control" placeholder="Escribe tu mensaje...">
+    <div class="input-group-append">
+        <button class="btn btn-info" type="button" onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+{{! Importamos el cliente de Socket.io y el script de chat }}
+<script src="/socket.io/socket.io.js"></script> 
+<script>
+    // 1. Aseguramos la conexión a Socket.io
+    const socket = io(); 
+
+    const messageInput = document.getElementById('messageInput');
+    const messagesDiv = document.getElementById('messages');
+    
+    // 2. Obtener el nombre de usuario del contexto de Handlebars (¡funciona si estás en la ruta correcta!)
+    const username = '{{sessionUsername}}'; 
+
+    // 3. Escuchar mensajes del servidor
+    socket.on('chat:message', (data) => {
+        // Formato: [Usuario]: Mensaje
+        const p = document.createElement('p');
+        p.innerHTML = `<strong>[${data.user}]</strong>: ${data.msg}`;
+        messagesDiv.appendChild(p);
+        // Desplazar al final
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; 
+    });
+
+    // 4. Función para enviar mensajes
+    function sendMessage() {
+        const msg = messageInput.value.trim();
+        if (msg) {
+            // Emitir un evento con el nombre de usuario y el mensaje
+            socket.emit('chat:sendMessage', {
+                user: username,
+                msg: msg
+            });
+            messageInput.value = ''; // Limpiar el input
+        }
+    }
+    
+    // Opcional: Enviar con la tecla Enter
+    messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>

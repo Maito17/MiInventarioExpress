@@ -1,0 +1,28 @@
+/* Tarea 9: Estilos personalizados para dar personalidad */
+
+/* Fondo general sutil */
+body {
+    background-color: #f8f9fa; /* Color gris muy claro */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para los divs de mensajes de chat */
+#messages {
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
+    max-height: 400px; /* Aumenta el alto */
+}
+
+/* Estilo para los mensajes propios (opcional) */
+.my-message {
+    text-align: right;
+    color: #007bff; /* Azul fuerte para mensajes propios */
+}
+
+/* Estilo para el contenedor de formularios (login, register) */
+.card-header {
+    background-color: #17a2b8; /* Color info de Bootstrap */
+    color: white;
+    font-weight: bold;
+}

@@ -1,0 +1,43 @@
+<h2>Crear Nuevo Producto</h2>
+<hr>
+
+{{! Tarea 8: Mostrar errores de validación si existen }}
+{{#if errors}}
+    <div class="alert alert-danger">
+        <ul>
+            {{#each errors}}
+                <li>{{msg}}</li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}
+
+{{! Nota: El formulario debe tener enctype="multipart/form-data" para Multer (Tarea 6) }}
+<form action="/products/new" method="POST" enctype="multipart/form-data">
+    
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        {{! Usamos 'product.nombre' para rellenar si hay errores (Tarea 8) }}
+        <input type="text" id="nombre" name="nombre" class="form-control" value="{{product.nombre}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input type="number" step="0.01" id="precio" name="precio" class="form-control" value="{{product.precio}}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" class="form-control">{{product.descripcion}}</textarea>
+    </div>
+
+    {{! Campo para la imagen - Tarea 6 }}
+    <div class="form-group">
+        <label for="imagen">Imagen del Producto:</label>
+        <input type="file" id="imagen" name="imagen" class="form-control-file" accept="image/jpeg, image/png">
+        <small class="form-text text-muted">Solo se permiten archivos JPEG/PNG de hasta 1MB.</small>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar Producto</button>
+    <a href="/products" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary"> {{! Cambia bg-dark por bg-primary para un color diferente }}
+    <a class="navbar-brand" href="/">MiInventarioExpress</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {{#if sessionUserId}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat">Chat</a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link text-light">Hola, **{{sessionUsername}}**</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-light ml-2" href="/logout">Salir</a> {{! Botón de salir estilizado }}
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Registrarse</a>
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+</nav>
+<style>
+    .nav-link.btn {
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    .nav-link.btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+    }
+</style>
